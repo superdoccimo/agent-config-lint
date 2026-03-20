@@ -17,6 +17,8 @@
 - GitHub Actions CIを追加（`.github/workflows/lint.yml`）
 - CLIパッケージ化を実装（`pyproject.toml`, `agent-config-lint` コマンド）
 - サンプル違反ケースを追加（`examples/bad_workspace`）
+- ルール説明ドキュメントを追加（`docs/rules.md`）
+- pipx導線をREADMEへ追加
 - 次ステップ:
-  1. ルール説明ドキュメント（全ルール一覧）を追加
-  2. pipxインストール手順をREADMEへ追加
+  1. `--score-weights` オプション追加（error/warn重み調整）
+  2. 最小ユニットテストを追加

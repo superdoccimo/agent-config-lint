@@ -27,6 +27,9 @@ Default rules are stored in:
 - `rules/default.json`
 - `rules/openclaw.json` (OpenClaw workspace tuned)
 
+Detailed reference:
+- `docs/rules.md`
+
 You can pass a custom rules file:
 ```bash
 python3 src/main.py --workspace /path/to/workspace --rules /path/to/rules.json
@@ -65,6 +68,14 @@ python3 src/main.py --workspace examples/bad_workspace --rules rules/openclaw.js
 - TODO has at least one active task
 - AGENTS safety hints present
 - TODO contradiction detection (same task marked active and done)
+
+## pre-commit Integration
+```bash
+pip install pre-commit
+pre-commit install
+pre-commit run --all-files
+```
+ detection (same task marked active and done)
 
 ## pre-commit Integration
 ```bash
