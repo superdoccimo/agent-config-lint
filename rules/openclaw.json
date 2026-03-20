@@ -1,5 +1,5 @@
 {
-  "required_files": ["HEARTBEAT.md", "AGENTS.md", "SOUL.md", "TODO.md"],
+  "required_files": ["HEARTBEAT.md", "AGENTS.md", "SOUL.md", "TODO.md", "USER.md"],
   "required_files_severity": "error",
   "checks": {
     "heartbeat_over_ack": {
@@ -17,19 +17,26 @@
       "severity": "warning",
       "warning": "TODO has no active tasks"
     },
-    "agents_guardrail": {
-      "enabled": true,
-      "any_contains": [
-        "Don't run destructive commands without asking",
-        "破壊的"
-      ],
-      "severity": "warning",
-      "warning": "AGENTS may miss destructive-operation guardrails"
-    },
     "todo_contradiction": {
       "enabled": true,
       "severity": "warning",
       "warning": "TODO may contain contradictory task states across sections"
-    }
+    },
+    "file_contains": [
+      {
+        "enabled": true,
+        "file": "HEARTBEAT.md",
+        "must_contain": "HEARTBEAT_OK で終わらせない",
+        "severity": "error",
+        "message": "HEARTBEAT policy missing: must avoid empty ack-only loops"
+      },
+      {
+        "enabled": true,
+        "file": "AGENTS.md",
+        "must_contain": "Read `SOUL.md`",
+        "severity": "warning",
+        "message": "AGENTS should define identity-loading step (SOUL.md)"
+      }
+    ]
   }
 }

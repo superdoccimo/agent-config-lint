@@ -19,11 +19,19 @@ python3 src/main.py --workspace /home/mamu/.openclaw/workspace --format json
 ## Rules Externalization
 Default rules are stored in:
 - `rules/default.json`
+- `rules/openclaw.json` (OpenClaw workspace tuned)
 
 You can pass a custom rules file:
 ```bash
 python3 src/main.py --workspace /path/to/workspace --rules /path/to/rules.json
 ```
+
+## Severity
+Each rule can emit:
+- `warning`
+- `error`
+
+`error` affects exit code (non-zero). `warning` keeps exit code zero.
 
 ## Checks (initial)
 - required files existence
