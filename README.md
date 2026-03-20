@@ -80,17 +80,29 @@ python3 src/main.py --workspace examples/bad_workspace --rules rules/openclaw.js
 - AGENTS safety hints present
 - TODO contradiction detection (same task marked active and done)
 
-## pre-commit Integration
-```bash
-pip install pre-commit
-pre-commit install
-pre-commit run --all-files
-```
- detection (same task marked active and done)
+## Rule Samples (per rule)
+Need a starter JSON for a specific rule?
 
-## pre-commit Integration
 ```bash
-pip install pre-commit
-pre-commit install
-pre-commit run --all-files
+agent-config-lint --workspace . --print-rule-sample heartbeat_over_ack
+agent-config-lint --workspace . --print-rule-sample file_contains
 ```
+
+Available samples:
+- `required_files`
+- `heartbeat_over_ack`
+- `todo_active_task`
+- `agents_guardrail`
+- `todo_contradiction`
+- `file_contains`
+
+## pre-commit Integration (simplified)
+Create a ready-to-use `.pre-commit-config.yaml` automatically:
+
+```bash
+agent-config-lint --workspace . --init-precommit
+pip install pre-commit && pre-commit install
+pre-commit run agent-config-lint --all-files
+```
+
+Use `--force-precommit` to overwrite existing config.

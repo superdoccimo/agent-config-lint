@@ -4,6 +4,79 @@ import re
 from pathlib import Path
 
 
+RULE_SAMPLES = {
+    "required_files": {
+        "required_files": ["AGENTS.md", "HEARTBEAT.md", "TODO.md"],
+        "required_files_severity": "error",
+    },
+    "heartbeat_over_ack": {
+        "checks": {
+            "heartbeat_over_ack": {
+                "enabled": True,
+                "severity": "warning",
+                "must_contain_if_has": {
+                    "has": "HEARTBEAT_OK",
+                    "must_contain": "必ず何かを進める",
+                },
+                "warning": "HEARTBEATがACKのみで終わる恐れがあります",
+            }
+        }
+    },
+    "todo_active_task": {
+        "checks": {
+            "todo_active_task": {
+                "enabled": True,
+                "severity": "warning",
+                "must_contain": "- [ ]",
+                "warning": "TODOに未完了タスクがありません",
+            }
+        }
+    },
+    "agents_guardrail": {
+        "checks": {
+            "agents_guardrail": {
+                "enabled": True,
+                "severity": "warning",
+                "any_contains": ["ask", "確認", "rm"],
+                "warning": "AGENTSに破壊操作ガードレールがありません",
+            }
+        }
+    },
+    "todo_contradiction": {
+        "checks": {
+            "todo_contradiction": {
+                "enabled": True,
+                "severity": "warning",
+                "warning": "同一タスクが未完了/完了で重複しています",
+            }
+        }
+    },
+    "file_contains": {
+        "checks": {
+            "file_contains": [
+                {
+                    "enabled": True,
+                    "file": "SOUL.md",
+                    "must_contain": "役に立つ",
+                    "severity": "warning",
+                    "message": "SOUL.mdにコア方針が見つかりません",
+                }
+            ]
+        }
+    },
+}
+
+PRECOMMIT_TEMPLATE = """repos:
+  - repo: local
+    hooks:
+      - id: agent-config-lint
+        name: agent-config-lint
+        entry: agent-config-lint --workspace . --rules rules/openclaw.json
+        language: system
+        pass_filenames: false
+"""
+
+
 def read(p: Path) -> str:
     return p.read_text(encoding="utf-8") if p.exists() else ""
 
@@ -52,6 +125,14 @@ def find_todo_contradictions(todo_text: str) -> list[str]:
 def compute_health_score(errors: list[str], warns: list[str], error_weight: int = 20, warn_weight: int = 7) -> int:
     score = 100 - (error_weight * len(errors)) - (warn_weight * len(warns))
     return max(0, score)
+
+
+def init_precommit(workspace: Path, force: bool = False) -> Path:
+    dst = workspace / ".pre-commit-config.yaml"
+    if dst.exists() and not force:
+        raise FileExistsError(f"{dst} already exists. use --force-precommit to overwrite")
+    dst.write_text(PRECOMMIT_TEMPLATE, encoding="utf-8")
+    return dst
 
 
 def run_checks(ws: Path, rules: dict) -> tuple[list[str], list[str]]:
@@ -114,9 +195,23 @@ def main():
     ap.add_argument("--error-weight", type=int, default=20)
     ap.add_argument("--warn-weight", type=int, default=7)
     ap.add_argument("--migrate-rules-out", default="")
+    ap.add_argument("--print-rule-sample", choices=sorted(RULE_SAMPLES.keys()), default="")
+    ap.add_argument("--init-precommit", action="store_true")
+    ap.add_argument("--force-precommit", action="store_true")
     args = ap.parse_args()
 
     ws = Path(args.workspace)
+
+    if args.print_rule_sample:
+        print(json.dumps(RULE_SAMPLES[args.print_rule_sample], ensure_ascii=False, indent=2))
+        raise SystemExit(0)
+
+    if args.init_precommit:
+        p = init_precommit(ws, force=args.force_precommit)
+        print(f"wrote {p}")
+        print("next: pip install pre-commit && pre-commit install")
+        raise SystemExit(0)
+
     rules = normalize_rules(load_rules(Path(args.rules)))
 
     if args.migrate_rules_out:

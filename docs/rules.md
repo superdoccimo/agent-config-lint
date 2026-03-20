@@ -33,6 +33,21 @@ Generic rule entries:
 - `severity`: warning/error
 - `message`: output message
 
+## Rule starter samples
+CLI can print minimal sample JSON per rule:
+
+```bash
+agent-config-lint --workspace . --print-rule-sample heartbeat_over_ack
+```
+
+Choices:
+- `required_files`
+- `heartbeat_over_ack`
+- `todo_active_task`
+- `agents_guardrail`
+- `todo_contradiction`
+- `file_contains`
+
 ## Included rule packs
 - `rules/default.json` : generic agent workspace checks
 - `rules/openclaw.json` : OpenClaw-tuned checks

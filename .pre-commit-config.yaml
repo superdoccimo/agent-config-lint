@@ -3,6 +3,6 @@ repos:
     hooks:
       - id: agent-config-lint
         name: agent-config-lint
-        entry: python3 src/main.py --workspace .
+        entry: agent-config-lint --workspace . --rules rules/openclaw.json
         language: system
         pass_filenames: false
