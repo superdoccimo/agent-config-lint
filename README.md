@@ -1,5 +1,9 @@
 # agent-config-lint
 
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/agent-config-lint)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![CI](https://github.com/superdoccimo/agent-config-lint/actions/workflows/lint.yml/badge.svg)
+
 AIエージェントのワークスペース設定（`HEARTBEAT.md`, `AGENTS.md`, `SOUL.md`, `TODO.md`）をlint/検証するCLI。
 
 CLI to lint and validate AI agent workspace configs (`HEARTBEAT.md`, `AGENTS.md`, `SOUL.md`, `TODO.md`).
