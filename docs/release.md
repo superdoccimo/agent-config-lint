@@ -5,13 +5,22 @@
 - Run lint command on sample workspace
 - Confirm README links and commands
 
-## 2) Tag
+## 2) First publish
+```bash
+./scripts/publish-github.sh
+```
+
+If authentication fails:
+- set up GitHub auth (`gh auth login` or credential helper)
+- then re-run `./scripts/publish-github.sh`
+
+## 3) Tag
 ```bash
 git tag -a v0.1.0 -m "v0.1.0"
 git push origin v0.1.0
 ```
 
-## 3) GitHub Release
+## 4) GitHub Release
 - Create release from tag
 - Include changelog summary
 - Mention key features:
@@ -21,6 +30,6 @@ git push origin v0.1.0
   - rule sample output
   - pre-commit bootstrap
 
-## 4) Post-release
+## 5) Post-release
 - Bump version in `pyproject.toml`
 - Start next milestone notes in `PROGRESS.md`
