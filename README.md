@@ -30,6 +30,12 @@ Default rules are stored in:
 Detailed reference:
 - `docs/rules.md`
 
+Rule migration helper (fills new fields like severity defaults):
+
+```bash
+agent-config-lint --workspace /path/to/workspace --rules old-rules.json --migrate-rules-out migrated-rules.json
+```
+
 You can pass a custom rules file:
 ```bash
 python3 src/main.py --workspace /path/to/workspace --rules /path/to/rules.json

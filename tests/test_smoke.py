@@ -46,3 +46,17 @@ def test_score_weights_option_changes_score():
     ])
     data = json.loads(p.stdout)
     assert data["health_score"] > 0
+
+
+def test_migrate_rules_out_creates_file(tmp_path):
+    out = tmp_path / "migrated.json"
+    p = run_cmd([
+        "python3", "src/main.py",
+        "--workspace", "examples/bad_workspace",
+        "--rules", "rules/default.json",
+        "--format", "json",
+        "--migrate-rules-out", str(out),
+    ])
+    assert out.exists()
+    migrated = json.loads(out.read_text(encoding="utf-8"))
+    assert "required_files_severity" in migrated

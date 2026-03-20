@@ -21,6 +21,8 @@
 - pipx導線をREADMEへ追加
 - `--error-weight` / `--warn-weight` を追加（スコア重み調整）
 - 最小ユニットテスト追加（`tests/test_smoke.py`）
+- `summary` 出力を追加（severity別件数）
+- ルール自動マイグレーション補助を追加（`--migrate-rules-out`）
 - 次ステップ:
-  1. 出力フォーマットに `summary`（counts by severity）を追加
-  2. ルールセットの自動マイグレーション補助（旧→新）
+  1. ルール別ドキュメントに入出力サンプルJSONを追記
+  2. `pre-commit` 自動セットアップ手順の簡略化スクリプト追加

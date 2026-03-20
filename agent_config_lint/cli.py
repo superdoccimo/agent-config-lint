@@ -19,6 +19,23 @@ def add_finding(errors: list[str], warns: list[str], severity: str, message: str
         warns.append(message)
 
 
+def normalize_rules(rules: dict) -> dict:
+    r = json.loads(json.dumps(rules))
+    if "required_files_severity" not in r:
+        r["required_files_severity"] = "error"
+
+    checks = r.setdefault("checks", {})
+    for key in ["heartbeat_over_ack", "todo_active_task", "agents_guardrail", "todo_contradiction"]:
+        if key in checks and isinstance(checks[key], dict):
+            checks[key].setdefault("severity", "warning")
+
+    for rule in checks.get("file_contains", []):
+        if isinstance(rule, dict):
+            rule.setdefault("severity", "warning")
+
+    return r
+
+
 def find_todo_contradictions(todo_text: str) -> list[str]:
     issues: list[str] = []
     by_task: dict[str, set[str]] = {}
@@ -96,10 +113,15 @@ def main():
     ap.add_argument("--format", choices=["text", "json"], default="text")
     ap.add_argument("--error-weight", type=int, default=20)
     ap.add_argument("--warn-weight", type=int, default=7)
+    ap.add_argument("--migrate-rules-out", default="")
     args = ap.parse_args()
 
     ws = Path(args.workspace)
-    rules = load_rules(Path(args.rules))
+    rules = normalize_rules(load_rules(Path(args.rules)))
+
+    if args.migrate_rules_out:
+        Path(args.migrate_rules_out).write_text(json.dumps(rules, ensure_ascii=False, indent=2), encoding="utf-8")
+
     errors, warns = run_checks(ws, rules)
     score = compute_health_score(errors, warns, error_weight=args.error_weight, warn_weight=args.warn_weight)
 
@@ -107,6 +129,7 @@ def main():
         "workspace": str(ws),
         "errors": errors,
         "warnings": warns,
+        "summary": {"error_count": len(errors), "warning_count": len(warns)},
         "health_score": score,
         "ok": (not errors and not warns),
     }
@@ -118,6 +141,7 @@ def main():
             print(f"ERROR: {e}")
         for w in warns:
             print(f"WARN: {w}")
+        print(f"SUMMARY: errors={len(errors)} warnings={len(warns)}")
         print(f"HEALTH_SCORE: {score}")
         if result["ok"]:
             print("OK: no issues found")
