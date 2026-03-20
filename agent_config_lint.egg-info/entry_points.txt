@@ -1,0 +1,2 @@
+[console_scripts]
+agent-config-lint = agent_config_lint.cli:main

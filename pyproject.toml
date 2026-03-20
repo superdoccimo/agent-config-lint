@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-config-lint"
+version = "0.1.0"
+description = "Lint and validate AI agent workspace config files"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "mamu"}]
+
+[project.scripts]
+agent-config-lint = "agent_config_lint.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["agent_config_lint*"]

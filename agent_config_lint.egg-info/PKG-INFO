@@ -1,3 +1,12 @@
+Metadata-Version: 2.4
+Name: agent-config-lint
+Version: 0.1.0
+Summary: Lint and validate AI agent workspace config files
+Author: mamu
+License: MIT
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+
 # agent-config-lint
 
 Lint and validate AI agent workspace configs (`HEARTBEAT.md`, `AGENTS.md`, `SOUL.md`, `TODO.md`).

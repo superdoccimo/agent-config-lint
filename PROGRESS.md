@@ -15,6 +15,8 @@
 - OpenClaw専用ルールセットを追加（`rules/openclaw.json`）
 - ルール重み付けスコア（health score）を実装
 - GitHub Actions CIを追加（`.github/workflows/lint.yml`）
+- CLIパッケージ化を実装（`pyproject.toml`, `agent-config-lint` コマンド）
+- サンプル違反ケースを追加（`examples/bad_workspace`）
 - 次ステップ:
-  1. CLIパッケージ化（`agent-config-lint` コマンド）
-  2. サンプル違反ケースのテストデータ追加
+  1. ルール説明ドキュメント（全ルール一覧）を追加
+  2. pipxインストール手順をREADMEへ追加
