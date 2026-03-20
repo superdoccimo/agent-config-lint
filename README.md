@@ -11,6 +11,20 @@ This tool catches common misconfigurations before runtime.
 python3 src/main.py --workspace /home/mamu/.openclaw/workspace
 ```
 
+## JSON Output
+```bash
+python3 src/main.py --workspace /home/mamu/.openclaw/workspace --format json
+```
+
+## Rules Externalization
+Default rules are stored in:
+- `rules/default.json`
+
+You can pass a custom rules file:
+```bash
+python3 src/main.py --workspace /path/to/workspace --rules /path/to/rules.json
+```
+
 ## Checks (initial)
 - required files existence
 - HEARTBEAT anti-patterns (contains only HEARTBEAT_OK flow)

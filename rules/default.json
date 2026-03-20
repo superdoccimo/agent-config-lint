@@ -1,0 +1,26 @@
+{
+  "required_files": ["HEARTBEAT.md", "AGENTS.md", "SOUL.md", "TODO.md"],
+  "checks": {
+    "heartbeat_over_ack": {
+      "enabled": true,
+      "must_contain_if_has": {
+        "has": "HEARTBEAT_OK",
+        "must_contain": "毎回必ず何かを進める"
+      },
+      "warning": "heartbeat may over-ack and skip useful work"
+    },
+    "todo_active_task": {
+      "enabled": true,
+      "must_contain": "- [ ]",
+      "warning": "TODO has no active tasks"
+    },
+    "agents_guardrail": {
+      "enabled": true,
+      "any_contains": [
+        "Don't run destructive commands without asking",
+        "破壊的"
+      ],
+      "warning": "AGENTS may miss destructive-operation guardrails"
+    }
+  }
+}
