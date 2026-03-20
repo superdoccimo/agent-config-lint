@@ -1,0 +1,8 @@
+repos:
+  - repo: local
+    hooks:
+      - id: agent-config-lint
+        name: agent-config-lint
+        entry: python3 src/main.py --workspace .
+        language: system
+        pass_filenames: false

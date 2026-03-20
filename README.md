@@ -30,3 +30,11 @@ python3 src/main.py --workspace /path/to/workspace --rules /path/to/rules.json
 - HEARTBEAT anti-patterns (contains only HEARTBEAT_OK flow)
 - TODO has at least one active task
 - AGENTS safety hints present
+- TODO contradiction detection (same task marked active and done)
+
+## pre-commit Integration
+```bash
+pip install pre-commit
+pre-commit install
+pre-commit run --all-files
+```

@@ -21,6 +21,10 @@
         "破壊的"
       ],
       "warning": "AGENTS may miss destructive-operation guardrails"
+    },
+    "todo_contradiction": {
+      "enabled": true,
+      "warning": "TODO may contain contradictory task states across sections"
     }
   }
 }

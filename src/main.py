@@ -1,5 +1,6 @@
 import argparse
 import json
+import re
 from pathlib import Path
 
 
@@ -9,6 +10,23 @@ def read(p: Path) -> str:
 
 def load_rules(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def find_todo_contradictions(todo_text: str) -> list[str]:
+    issues: list[str] = []
+    by_task: dict[str, set[str]] = {}
+
+    # Parse markdown tasks like: - [ ] task / - [x] task
+    for m in re.finditer(r"^- \[( |x)\] (.+)$", todo_text, flags=re.MULTILINE):
+        state = "done" if m.group(1) == "x" else "active"
+        task = re.sub(r"\s+", " ", m.group(2).strip())
+        by_task.setdefault(task, set()).add(state)
+
+    for task, states in by_task.items():
+        if len(states) > 1:
+            issues.append(f"task appears both active and done: {task}")
+
+    return issues
 
 
 def run_checks(ws: Path, rules: dict) -> tuple[list[str], list[str]]:
@@ -40,6 +58,14 @@ def run_checks(ws: Path, rules: dict) -> tuple[list[str], list[str]]:
         needles = agents_rule.get("any_contains", [])
         if not any(n in agents for n in needles):
             warns.append(agents_rule.get("warning", "AGENTS guardrail missing"))
+
+    contradiction_rule = checks.get("todo_contradiction", {})
+    if contradiction_rule.get("enabled"):
+        todo = read(ws / "TODO.md")
+        contradictions = find_todo_contradictions(todo)
+        if contradictions:
+            warns.append(contradiction_rule.get("warning", "TODO contradiction risk"))
+            warns.extend([f"todo: {c}" for c in contradictions])
 
     return errors, warns
 
