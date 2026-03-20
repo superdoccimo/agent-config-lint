@@ -1,9 +1,0 @@
-README.md
-pyproject.toml
-agent_config_lint/__init__.py
-agent_config_lint/cli.py
-agent_config_lint.egg-info/PKG-INFO
-agent_config_lint.egg-info/SOURCES.txt
-agent_config_lint.egg-info/dependency_links.txt
-agent_config_lint.egg-info/entry_points.txt
-agent_config_lint.egg-info/top_level.txt
