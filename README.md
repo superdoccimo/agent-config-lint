@@ -33,6 +33,19 @@ Each rule can emit:
 
 `error` affects exit code (non-zero). `warning` keeps exit code zero.
 
+## Health Score
+The linter reports a simple health score in range `0-100`.
+
+- start: 100
+- each error: -20
+- each warning: -7
+
+Use it as a quick signal for drift/regression in agent config quality.
+
+## CI (GitHub Actions)
+A sample workflow is included:
+- `.github/workflows/lint.yml`
+
 ## Checks (initial)
 - required files existence
 - HEARTBEAT anti-patterns (contains only HEARTBEAT_OK flow)

@@ -32,6 +32,11 @@ def find_todo_contradictions(todo_text: str) -> list[str]:
     return issues
 
 
+def compute_health_score(errors: list[str], warns: list[str]) -> int:
+    score = 100 - (20 * len(errors)) - (7 * len(warns))
+    return max(0, score)
+
+
 def run_checks(ws: Path, rules: dict) -> tuple[list[str], list[str]]:
     errors: list[str] = []
     warns: list[str] = []
@@ -94,8 +99,15 @@ def main():
     ws = Path(args.workspace)
     rules = load_rules(Path(args.rules))
     errors, warns = run_checks(ws, rules)
+    score = compute_health_score(errors, warns)
 
-    result = {"workspace": str(ws), "errors": errors, "warnings": warns, "ok": (not errors and not warns)}
+    result = {
+        "workspace": str(ws),
+        "errors": errors,
+        "warnings": warns,
+        "health_score": score,
+        "ok": (not errors and not warns),
+    }
 
     if args.format == "json":
         print(json.dumps(result, ensure_ascii=False, indent=2))
@@ -104,6 +116,7 @@ def main():
             print(f"ERROR: {e}")
         for w in warns:
             print(f"WARN: {w}")
+        print(f"HEALTH_SCORE: {score}")
         if result["ok"]:
             print("OK: no issues found")
 

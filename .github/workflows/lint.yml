@@ -1,0 +1,17 @@
+name: agent-config-lint
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint-workspace-sample:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run self-check with default rules
+        run: |
+          python3 src/main.py --workspace . --rules rules/default.json --format json || true
+      - name: Run self-check with OpenClaw rules
+        run: |
+          python3 src/main.py --workspace . --rules rules/openclaw.json --format json || true
