@@ -32,8 +32,8 @@ def find_todo_contradictions(todo_text: str) -> list[str]:
     return issues
 
 
-def compute_health_score(errors: list[str], warns: list[str]) -> int:
-    score = 100 - (20 * len(errors)) - (7 * len(warns))
+def compute_health_score(errors: list[str], warns: list[str], error_weight: int = 20, warn_weight: int = 7) -> int:
+    score = 100 - (error_weight * len(errors)) - (warn_weight * len(warns))
     return max(0, score)
 
 
@@ -94,12 +94,14 @@ def main():
     ap.add_argument("--workspace", required=True)
     ap.add_argument("--rules", default="rules/default.json")
     ap.add_argument("--format", choices=["text", "json"], default="text")
+    ap.add_argument("--error-weight", type=int, default=20)
+    ap.add_argument("--warn-weight", type=int, default=7)
     args = ap.parse_args()
 
     ws = Path(args.workspace)
     rules = load_rules(Path(args.rules))
     errors, warns = run_checks(ws, rules)
-    score = compute_health_score(errors, warns)
+    score = compute_health_score(errors, warns, error_weight=args.error_weight, warn_weight=args.warn_weight)
 
     result = {
         "workspace": str(ws),

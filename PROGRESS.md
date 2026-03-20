@@ -19,6 +19,8 @@
 - サンプル違反ケースを追加（`examples/bad_workspace`）
 - ルール説明ドキュメントを追加（`docs/rules.md`）
 - pipx導線をREADMEへ追加
+- `--error-weight` / `--warn-weight` を追加（スコア重み調整）
+- 最小ユニットテスト追加（`tests/test_smoke.py`）
 - 次ステップ:
-  1. `--score-weights` オプション追加（error/warn重み調整）
-  2. 最小ユニットテストを追加
+  1. 出力フォーマットに `summary`（counts by severity）を追加
+  2. ルールセットの自動マイグレーション補助（旧→新）

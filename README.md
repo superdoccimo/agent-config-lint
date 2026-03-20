@@ -46,10 +46,15 @@ Each rule can emit:
 The linter reports a simple health score in range `0-100`.
 
 - start: 100
-- each error: -20
-- each warning: -7
+- each error: -20 (default)
+- each warning: -7 (default)
 
 Use it as a quick signal for drift/regression in agent config quality.
+You can tune weights:
+
+```bash
+agent-config-lint --workspace /path/to/workspace --error-weight 15 --warn-weight 3 --format json
+```
 
 ## CI (GitHub Actions)
 A sample workflow is included:
