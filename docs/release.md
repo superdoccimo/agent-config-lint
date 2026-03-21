@@ -4,6 +4,7 @@
 - Run combined preflight: `./scripts/first-publish-check.sh` (includes consolidated readiness check)
 - Check publish blockers quickly: `./scripts/publish-status.sh` (or `--json`)
 - Generate shareable markdown: `./scripts/publish-report.sh`
+- Show single immediate action: `./scripts/publish-next-action.sh`
 - Or run individually:
   - tests: `python -m pytest -q`
   - lint command on sample workspace
