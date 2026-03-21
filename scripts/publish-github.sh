@@ -3,7 +3,7 @@ set -euo pipefail
 
 REPO="superdoccimo/agent-config-lint"
 BRANCH="master"
-USE_SSH="${1:-}" # pass --ssh to force ssh remote
+MODE="${1:-}" # --ssh | --https-token
 
 if ! command -v git >/dev/null 2>&1; then
   echo "git not found" >&2
@@ -26,9 +26,25 @@ if ! git remote get-url origin >/dev/null 2>&1; then
   git remote add origin "https://github.com/${REPO}.git"
 fi
 
-if [[ "${USE_SSH}" == "--ssh" ]]; then
-  git remote set-url origin "git@github.com:${REPO}.git"
-fi
+case "${MODE}" in
+  --ssh)
+    git remote set-url origin "git@github.com:${REPO}.git"
+    ;;
+  --https-token)
+    if [[ -z "${GITHUB_TOKEN:-}" ]]; then
+      echo "GITHUB_TOKEN is empty. export GITHUB_TOKEN first." >&2
+      exit 3
+    fi
+    git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git"
+    ;;
+  "")
+    ;;
+  *)
+    echo "unknown mode: ${MODE}" >&2
+    echo "usage: ./scripts/publish-github.sh [--ssh|--https-token]" >&2
+    exit 4
+    ;;
+esac
 
 REMOTE_URL="$(git remote get-url origin)"
 echo "origin: ${REMOTE_URL}"
