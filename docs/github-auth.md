@@ -61,6 +61,11 @@ Before first push, verify target repo exists:
 ./scripts/check-github-repo.sh superdoccimo/agent-config-lint
 ```
 
+If repo does not exist and you use GitHub CLI:
+```bash
+./scripts/create-github-repo.sh superdoccimo/agent-config-lint public
+```
+
 ## Notes
 - Script requires clean working tree.
 - `--https-token` rewrites `origin` URL with token. After push, you may switch back to SSH:
