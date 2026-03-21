@@ -2,6 +2,7 @@
 
 ## 1) Pre-release
 - Run combined preflight: `./scripts/first-publish-check.sh`
+- Check publish blockers quickly: `./scripts/publish-status.sh`
 - Or run individually:
   - tests: `python -m pytest -q`
   - lint command on sample workspace
