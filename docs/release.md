@@ -1,7 +1,7 @@
 # Release Checklist
 
 ## 1) Pre-release
-- Run combined preflight: `./scripts/first-publish-check.sh`
+- Run combined preflight: `./scripts/first-publish-check.sh` (includes consolidated readiness check)
 - Check publish blockers quickly: `./scripts/publish-status.sh` (or `--json`)
 - Or run individually:
   - tests: `python -m pytest -q`

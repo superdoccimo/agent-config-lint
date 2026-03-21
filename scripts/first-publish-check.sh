@@ -38,6 +38,16 @@ fi
 echo "[4] auth diagnostics"
 ./scripts/check-github-auth.sh || true
 
+echo "[5] consolidated publish status"
+status_json="$(./scripts/publish-status.sh "${REPO}" --json)"
+echo "${status_json}"
+if echo "${status_json}" | grep -q '"ready": "ok"'; then
+  echo "  OK: consolidated status is ready"
+else
+  echo "  NG: consolidated status is not ready"
+  ok=false
+fi
+
 if [[ "${ok}" == true ]]; then
   echo "READY: run ./scripts/publish-github.sh --ssh (or --https-token)"
   exit 0
