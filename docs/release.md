@@ -11,7 +11,12 @@
 - Prepare launch copy and repo subtitle from `docs/launch-kit.md`
 
 ## 2) First publish
-Safe one-shot flow:
+Safe one-shot flow (auto picks ssh/token):
+```bash
+./scripts/publish-once.sh superdoccimo/agent-config-lint
+```
+
+Explicit mode:
 ```bash
 ./scripts/publish-once.sh superdoccimo/agent-config-lint --ssh
 ```
