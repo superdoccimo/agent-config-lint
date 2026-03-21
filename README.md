@@ -10,6 +10,22 @@ Catch broken AI agent workspaces before they waste runs.
 
 AIエージェント運用で使う `HEARTBEAT.md`, `AGENTS.md`, `SOUL.md`, `TODO.md`, `USER.md` などの設定ファイルを lint / 検証するCLIです。OpenClaw 向けルールも同梱しています。
 
+## 30-second value
+
+- Detect missing required files before runtime
+- Catch contradictory TODO state (`active` and `done` at once)
+- Flag weak guardrail/heartbeat policies
+- Export JSON for CI and pre-commit checks
+
+### Quick run
+
+```bash
+git clone https://github.com/superdoccimo/agent-config-lint.git
+cd agent-config-lint
+pip install -e .
+agent-config-lint --workspace examples/bad_workspace --rules rules/openclaw.json --format json
+```
+
 ---
 
 ## Why This Exists
