@@ -8,7 +8,11 @@ ok=true
 echo "== first publish preflight =="
 
 echo "[1] tests"
-if python -m pytest -q >/dev/null 2>&1; then
+PYTEST_BIN="python -m pytest"
+if [[ -x ./.venv/bin/python ]]; then
+  PYTEST_BIN="./.venv/bin/python -m pytest"
+fi
+if ${PYTEST_BIN} -q >/dev/null 2>&1; then
   echo "  OK"
 else
   echo "  NG: tests failed"
