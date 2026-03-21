@@ -1,9 +1,11 @@
 # Release Checklist
 
 ## 1) Pre-release
-- Run tests: `python -m pytest -q`
-- Run lint command on sample workspace
-- Confirm README links and commands
+- Run combined preflight: `./scripts/first-publish-check.sh`
+- Or run individually:
+  - tests: `python -m pytest -q`
+  - lint command on sample workspace
+  - confirm README links and commands
 
 ## 2) First publish
 ```bash
