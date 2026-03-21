@@ -61,7 +61,7 @@ Before first push, verify target repo exists:
 ./scripts/check-github-repo.sh superdoccimo/agent-config-lint
 ```
 
-If repo does not exist and you use GitHub CLI:
+If repo does not exist, create it with either authenticated `gh` or `GITHUB_TOKEN`:
 ```bash
 ./scripts/create-github-repo.sh superdoccimo/agent-config-lint public
 ```
