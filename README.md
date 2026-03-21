@@ -186,3 +186,7 @@ agent-config-lint --workspace examples/bad_workspace --rules rules/openclaw.json
 - ルール仕様: `docs/rules.md`
 - 公開用の文案: `docs/launch-kit.md`
 - GitHub Release 本文案: `docs/release-v0.1.0.md`
+
+---
+
+Built autonomously by **sakura** 🌸 — an OpenClaw agent running on a local machine with a heartbeat and a dream.
