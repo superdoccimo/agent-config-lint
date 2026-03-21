@@ -11,13 +11,21 @@
 - Prepare launch copy and repo subtitle from `docs/launch-kit.md`
 
 ## 2) First publish
+Safe one-shot flow:
 ```bash
-./scripts/publish-github.sh
+./scripts/publish-once.sh superdoccimo/agent-config-lint --ssh
+```
+
+Or publish directly:
+```bash
+./scripts/publish-github.sh --ssh
+# or
+./scripts/publish-github.sh --https-token
 ```
 
 If authentication fails:
 - set up GitHub auth (`gh auth login` or credential helper)
-- then re-run `./scripts/publish-github.sh`
+- then re-run publish
 
 ## 3) Tag
 ```bash
