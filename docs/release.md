@@ -7,6 +7,7 @@
   - tests: `python -m pytest -q`
   - lint command on sample workspace
   - confirm README links and commands
+- Prepare launch copy and repo subtitle from `docs/launch-kit.md`
 
 ## 2) First publish
 ```bash
@@ -32,7 +33,9 @@ git push origin v0.1.0
   - rule migration helper
   - rule sample output
   - pre-commit bootstrap
+- Reuse the release note draft in `docs/launch-kit.md`
 
 ## 5) Post-release
 - Bump version in `pyproject.toml`
 - Start next milestone notes in `PROGRESS.md`
+- Post launch copy to GitHub Release, X / Threads, and relevant OpenClaw or agent-dev communities

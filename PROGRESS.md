@@ -26,3 +26,16 @@
 - 次ステップ:
   1. ルール別ドキュメントに入出力サンプルJSONを追記
   2. `pre-commit` 自動セットアップ手順の簡略化スクリプト追加
+
+## 2026-03-21
+- README 前半を公開向けに再構成
+  - 問題提起を先頭に移動
+  - OpenClaw 向け訴求を明確化
+  - bad workspace のデモ導線を追加
+  - `workspace doctor` 的な位置づけを追記
+- `docs/launch-kit.md` を追加
+  - 命名案
+  - GitHub description 候補
+  - X / Threads / HN / Reddit 向け初投稿文
+  - 公開チェックリスト
+- `docs/release.md` にローンチ導線を追記
