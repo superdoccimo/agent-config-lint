@@ -55,6 +55,12 @@ export GITHUB_TOKEN=ghp_xxx
 
 (You can run `./scripts/publish-github.sh --dry-run` first.)
 
+## Repo existence check (optional)
+Before first push, verify target repo exists:
+```bash
+./scripts/check-github-repo.sh superdoccimo/agent-config-lint
+```
+
 ## Notes
 - Script requires clean working tree.
 - `--https-token` rewrites `origin` URL with token. After push, you may switch back to SSH:
