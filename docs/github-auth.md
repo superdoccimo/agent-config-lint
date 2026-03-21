@@ -25,6 +25,11 @@ use either SSH auth (recommended) or HTTPS token.
 - New SSH key
 - Paste key and save
 
+Helper (prints key and tries clipboard copy):
+```bash
+./scripts/github-key-helper.sh
+```
+
 ### 3) Verify
 ```bash
 ssh -T git@github.com
