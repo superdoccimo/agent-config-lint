@@ -8,6 +8,11 @@ fatal: could not read Username for 'https://github.com': No such device or addre
 
 use either SSH auth (recommended) or HTTPS token.
 
+## Quick diagnostics
+```bash
+./scripts/check-github-auth.sh
+```
+
 ## Option A: SSH (recommended)
 
 ### 1) Generate key and print public key
