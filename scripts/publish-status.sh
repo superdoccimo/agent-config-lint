@@ -1,39 +1,59 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO="${1:-superdoccimo/agent-config-lint}"
+REPO="superdoccimo/agent-config-lint"
+FORMAT="text" # text|json
 
-echo "== publish status =="
+for arg in "$@"; do
+  case "$arg" in
+    --json) FORMAT="json" ;;
+    *) REPO="$arg" ;;
+  esac
+done
+
+git_clean="ng"
+repo_exists="ng"
+ssh_auth="ng"
+token="ng"
 
 if [[ -z "$(git status --porcelain)" ]]; then
-  echo "git_clean=ok"
-else
-  echo "git_clean=ng"
+  git_clean="ok"
 fi
 
 if ./scripts/check-github-repo.sh "${REPO}" >/dev/null 2>&1; then
-  echo "repo_exists=ok"
-else
-  echo "repo_exists=ng"
+  repo_exists="ok"
 fi
 
 if ssh -T git@github.com -o BatchMode=yes -o StrictHostKeyChecking=accept-new >/dev/null 2>&1; then
-  echo "ssh_auth=ok"
-else
-  echo "ssh_auth=ng"
+  ssh_auth="ok"
 fi
 
 if [[ -n "${GITHUB_TOKEN:-}" ]]; then
-  echo "token=ok"
-else
-  echo "token=ng"
+  token="ok"
 fi
 
+if [[ "${FORMAT}" == "json" ]]; then
+  printf '{\n'
+  printf '  "repo": "%s",\n' "${REPO}"
+  printf '  "git_clean": "%s",\n' "${git_clean}"
+  printf '  "repo_exists": "%s",\n' "${repo_exists}"
+  printf '  "ssh_auth": "%s",\n' "${ssh_auth}"
+  printf '  "token": "%s"\n' "${token}"
+  printf '}\n'
+  exit 0
+fi
+
+echo "== publish status =="
+echo "git_clean=${git_clean}"
+echo "repo_exists=${repo_exists}"
+echo "ssh_auth=${ssh_auth}"
+echo "token=${token}"
+
 echo "-- next steps --"
-if ! ./scripts/check-github-repo.sh "${REPO}" >/dev/null 2>&1; then
+if [[ "${repo_exists}" != "ok" ]]; then
   echo "1) Create repo: ./scripts/create-github-repo.sh ${REPO} public"
 fi
-if ! ssh -T git@github.com -o BatchMode=yes -o StrictHostKeyChecking=accept-new >/dev/null 2>&1; then
+if [[ "${ssh_auth}" != "ok" ]]; then
   echo "2) Add SSH key to GitHub or use GITHUB_TOKEN"
 fi
 echo "3) Publish: ./scripts/publish-github.sh --ssh (or --https-token)"
