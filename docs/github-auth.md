@@ -31,7 +31,12 @@ ssh -T git@github.com
 ```
 Expected: authenticated message.
 
-### 4) Push
+### 4) Preflight check (optional)
+```bash
+./scripts/publish-github.sh --dry-run
+```
+
+### 5) Push
 ```bash
 ./scripts/publish-github.sh --ssh
 ```
@@ -47,6 +52,8 @@ Expected: authenticated message.
 export GITHUB_TOKEN=ghp_xxx
 ./scripts/publish-github.sh --https-token
 ```
+
+(You can run `./scripts/publish-github.sh --dry-run` first.)
 
 ## Notes
 - Script requires clean working tree.

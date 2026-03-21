@@ -3,7 +3,7 @@ set -euo pipefail
 
 REPO="superdoccimo/agent-config-lint"
 BRANCH="master"
-MODE="${1:-}" # --ssh | --https-token
+MODE="${1:-}" # --ssh | --https-token | --dry-run
 
 if ! command -v git >/dev/null 2>&1; then
   echo "git not found" >&2
@@ -37,11 +37,11 @@ case "${MODE}" in
     fi
     git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git"
     ;;
-  "")
+  --dry-run|"")
     ;;
   *)
     echo "unknown mode: ${MODE}" >&2
-    echo "usage: ./scripts/publish-github.sh [--ssh|--https-token]" >&2
+    echo "usage: ./scripts/publish-github.sh [--ssh|--https-token|--dry-run]" >&2
     exit 4
     ;;
 esac
@@ -54,6 +54,11 @@ if [[ "${REMOTE_URL}" == git@github.com:* ]]; then
     echo "SSH auth not ready. Run ./scripts/setup-github-auth.sh and add key to GitHub." >&2
     exit 2
   fi
+fi
+
+if [[ "${MODE}" == "--dry-run" ]]; then
+  echo "dry-run OK: publish prerequisites look good"
+  exit 0
 fi
 
 echo "pushing ${BRANCH} to origin..."
