@@ -48,6 +48,27 @@ echo "git_clean=${git_clean}"
 echo "repo_exists=${repo_exists}"
 echo "ssh_auth=${ssh_auth}"
 echo "token=${token}"
+echo "ready=${ready}"
+
+echo "-- next steps --"
+if [[ "${repo_exists}" != "ok" ]]; then
+  echo "1) Create repo: ./scripts/create-github-repo.sh ${REPO} public"
+fi
+if [[ "${ssh_auth}" != "ok" ]]; then
+  echo "2) Add SSH key to GitHub or use GITHUB_TOKEN"
+fi
+echo "3) Publish: ./scripts/publish-github.sh --ssh (or --https-token)"
+{ssh_auth}" != "ok" && "${token}" != "ok" ]]; then printf '%s"no_auth_method"' "$([[ $first -eq 1 ]] && echo '' || echo ',')"; first=0; fi
+  printf ']\n'
+  printf '}\n'
+  exit 0
+fi
+
+echo "== publish status =="
+echo "git_clean=${git_clean}"
+echo "repo_exists=${repo_exists}"
+echo "ssh_auth=${ssh_auth}"
+echo "token=${token}"
 
 echo "-- next steps --"
 if [[ "${repo_exists}" != "ok" ]]; then
