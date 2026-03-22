@@ -2,6 +2,9 @@
 
 `agent-config-lint` first-publish helper scripts (quick reference).
 
+For a quick list from terminal:
+- `./scripts/publish-help.sh`
+
 ## Status / diagnostics
 - `./scripts/publish-dashboard.sh [repo]`
 - `./scripts/publish-check-all.sh [repo]` (full snapshot)
