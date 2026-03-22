@@ -29,6 +29,7 @@ Helpers:
 ```bash
 ./scripts/open-github-keys.sh
 ./scripts/github-key-helper.sh
+./scripts/setup-github-auth-quickstart.sh
 ```
 
 ### 3) Verify
