@@ -4,6 +4,7 @@
 
 ## Status / diagnostics
 - `./scripts/publish-dashboard.sh [repo]`
+- `./scripts/publish-check-all.sh [repo]` (full snapshot)
 - `./scripts/publish-status.sh [repo] [--json]`
 - `./scripts/publish-brief.sh [repo]`
 - `./scripts/publish-ready-message.sh [repo]`
