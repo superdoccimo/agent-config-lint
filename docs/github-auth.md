@@ -25,8 +25,9 @@ use either SSH auth (recommended) or HTTPS token.
 - New SSH key
 - Paste key and save
 
-Helper (prints key and tries clipboard copy):
+Helpers:
 ```bash
+./scripts/open-github-keys.sh
 ./scripts/github-key-helper.sh
 ```
 
