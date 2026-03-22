@@ -16,6 +16,7 @@ For a quick list from terminal:
 ## Auth
 - `./scripts/check-github-auth.sh`
 - `./scripts/check-github-auth-exit.sh`
+- `./scripts/publish-auth-status.sh`
 - `./scripts/open-github-keys.sh`
 - `./scripts/github-key-helper.sh`
 - `./scripts/setup-github-auth-quickstart.sh [repo]`
