@@ -15,7 +15,7 @@
 - Prepare launch copy and repo subtitle from `docs/launch-kit.md`
 
 ## 2) First publish
-Safe one-shot flow (auto picks ssh/token):
+Safe one-shot flow (auto picks ssh/token via `check-github-auth-exit.sh`):
 ```bash
 ./scripts/publish-once.sh superdoccimo/agent-config-lint
 ```

@@ -10,17 +10,15 @@ if [[ "${MODE}" != "auto" && "${MODE}" != "--ssh" && "${MODE}" != "--https-token
 fi
 
 if [[ "${MODE}" == "auto" ]]; then
-  status_json="$(./scripts/publish-status.sh "${REPO}" --json)"
-  ssh_auth="$(echo "$status_json" | sed -n 's/.*"ssh_auth": "\([^"]*\)".*/\1/p' | head -1)"
-  token="$(echo "$status_json" | sed -n 's/.*"token": "\([^"]*\)".*/\1/p' | head -1)"
-
-  if [[ "${ssh_auth}" == "ok" ]]; then
-    MODE="--ssh"
-  elif [[ "${token}" == "ok" ]]; then
-    MODE="--https-token"
+  if ./scripts/check-github-auth-exit.sh >/dev/null 2>&1; then
+    if ssh -T git@github.com -o BatchMode=yes -o StrictHostKeyChecking=accept-new >/dev/null 2>&1; then
+      MODE="--ssh"
+    else
+      MODE="--https-token"
+    fi
   else
     echo "No auth method ready (ssh/token)." >&2
-    echo "Run: ./scripts/check-github-auth.sh" >&2
+    echo "Run: ./scripts/setup-github-auth-quickstart.sh ${REPO}" >&2
     exit 2
   fi
 fi
