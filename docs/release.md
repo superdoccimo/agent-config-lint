@@ -10,6 +10,7 @@
 - CI-friendly readiness exit code: `./scripts/publish-ready-exit.sh`
 - Human handoff steps: `./scripts/publish-human-steps.sh`
 - Ready/not-ready one-liner message: `./scripts/publish-ready-message.sh`
+- Ultra-brief status for chat logs: `./scripts/publish-brief.sh`
 - Or run individually:
   - tests: `python -m pytest -q`
   - lint command on sample workspace
