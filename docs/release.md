@@ -6,6 +6,7 @@
 - Generate shareable markdown: `./scripts/publish-report.sh`
 - Show single immediate action: `./scripts/publish-next-action.sh`
 - Interactive guided flow: `./scripts/publish-guided.sh` (stops early with exact remediation if git/auth is not ready)
+- If git tree is dirty: `./scripts/publish-cleanup.sh`
 - Or run individually:
   - tests: `python -m pytest -q`
   - lint command on sample workspace
