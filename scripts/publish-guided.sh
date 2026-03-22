@@ -7,14 +7,22 @@ echo "== Guided First Publish =="
 echo
 
 echo "Step 1: check current blockers"
-./scripts/publish-status.sh "${REPO}" || true
+status_json="$(./scripts/publish-status.sh "${REPO}" --json)"
+echo "$status_json"
 echo
 
-echo "Step 2: if auth not ready, run helper"
+if echo "$status_json" | grep -q '"git_clean": "ng"'; then
+  echo "Step 1.5: working tree is dirty"
+  echo "- Run: git status --short"
+  echo "- Commit/stash changes, then re-run this script."
+  exit 3
+fi
+
+echo "Step 2: ensure auth is ready"
 if ! ssh -T git@github.com -o BatchMode=yes -o StrictHostKeyChecking=accept-new >/dev/null 2>&1 && [[ -z "${GITHUB_TOKEN:-}" ]]; then
   ./scripts/github-key-helper.sh || true
   echo
-  echo "After registering the key on GitHub, re-run this script."
+  echo "After registering the key on GitHub (or exporting GITHUB_TOKEN), re-run this script."
   exit 2
 fi
 
