@@ -11,6 +11,7 @@ use either SSH auth (recommended) or HTTPS token.
 ## Quick diagnostics
 ```bash
 ./scripts/check-github-auth.sh
+./scripts/check-github-auth-exit.sh  # exit code only (0=ready,1=not-ready)
 ```
 
 ## Option A: SSH (recommended)
