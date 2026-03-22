@@ -108,6 +108,9 @@ Bundled rule packs:
 - `rules/default.json`
 - `rules/openclaw.json`
 
+Publish helper map:
+- `docs/publish-helpers.md`
+
 `rules/openclaw.json` checks for OpenClaw-oriented workspace conventions such as:
 - required files including `USER.md`
 - heartbeat text that avoids empty ACK-only loops
