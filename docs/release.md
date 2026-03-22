@@ -9,6 +9,7 @@
 - If git tree is dirty: `./scripts/publish-cleanup.sh`
 - CI-friendly readiness exit code: `./scripts/publish-ready-exit.sh`
 - Human handoff steps: `./scripts/publish-human-steps.sh`
+- Ready/not-ready one-liner message: `./scripts/publish-ready-message.sh`
 - Or run individually:
   - tests: `python -m pytest -q`
   - lint command on sample workspace
