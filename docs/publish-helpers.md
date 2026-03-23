@@ -10,6 +10,7 @@ For a quick list from terminal:
 - `./scripts/publish-check-all.sh [repo]` (full snapshot)
 - `./scripts/publish-status.sh [repo] [--json]`
 - `./scripts/publish-status-ja.sh [repo]`
+- `./scripts/publish-status-emoji.sh [repo]`
 - `./scripts/publish-brief.sh [repo]`
 - `./scripts/publish-ready-message.sh [repo]`
 - `./scripts/publish-ready-exit.sh [repo]`
