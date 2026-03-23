@@ -17,6 +17,7 @@ For a quick list from terminal:
 - `./scripts/check-github-auth.sh`
 - `./scripts/check-github-auth-exit.sh`
 - `./scripts/publish-auth-status.sh`
+- `./scripts/publish-telegram-note.sh [repo]`
 - `./scripts/open-github-keys.sh`
 - `./scripts/github-key-helper.sh`
 - `./scripts/setup-github-auth-quickstart.sh [repo]`
