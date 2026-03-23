@@ -12,7 +12,7 @@ def run_cmd(args):
 def test_good_workspace_ok_json():
     p = run_cmd([
         "python3", "src/main.py",
-        "--workspace", "/home/mamu/.openclaw/workspace",
+        "--workspace", "examples/good_workspace",
         "--rules", "rules/openclaw.json",
         "--format", "json",
     ])
