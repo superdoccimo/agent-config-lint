@@ -28,6 +28,7 @@ For a quick list from terminal:
 
 ## Publish flows
 - `./scripts/publish-next-action.sh [repo]`
+- `./scripts/publish-do-now.sh [repo]` (just print the single command to run now)
 - `./scripts/publish-cleanup.sh`
 - `./scripts/publish-human-steps.sh [repo]`
 - `./scripts/publish-guided.sh [repo]`
