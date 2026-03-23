@@ -30,6 +30,7 @@ For a quick list from terminal:
 - `./scripts/publish-next-action.sh [repo]`
 - `./scripts/publish-next-human-step.sh [repo]` (Japanese one-line next step)
 - `./scripts/publish-short-ja.sh [repo]` (ultra-short Japanese next step)
+- `./scripts/publish-ready-ja.sh [repo]` (ready/not-ready in Japanese)
 - `./scripts/publish-clipboard-note.sh [repo]` (single-line note without trailing newline)
 - `./scripts/publish-do-now.sh [repo]` (just print the single command to run now)
 - `./scripts/publish-verify-and-run.sh [repo]` (run publish only when ready)
