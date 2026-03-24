@@ -14,6 +14,7 @@ For a quick list from terminal:
 - `./scripts/publish-status-symbol.sh [repo]`
 - `./scripts/publish-status-icon.sh [repo]`
 - `./scripts/publish-blockers-count.sh [repo]`
+- `./scripts/publish-ready-mark.sh [repo]`
 - `./scripts/publish-brief.sh [repo]`
 - `./scripts/publish-ready-message.sh [repo]`
 - `./scripts/publish-ready-exit.sh [repo]`
