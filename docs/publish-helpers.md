@@ -12,6 +12,7 @@ For a quick list from terminal:
 - `./scripts/publish-status-ja.sh [repo]`
 - `./scripts/publish-status-emoji.sh [repo]`
 - `./scripts/publish-status-symbol.sh [repo]`
+- `./scripts/publish-status-icon.sh [repo]`
 - `./scripts/publish-brief.sh [repo]`
 - `./scripts/publish-ready-message.sh [repo]`
 - `./scripts/publish-ready-exit.sh [repo]`
