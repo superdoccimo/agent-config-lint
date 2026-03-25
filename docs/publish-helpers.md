@@ -22,6 +22,7 @@ For a quick list from terminal:
 - `./scripts/publish-ready-upper.sh [repo]`
 - `./scripts/publish-ready-lower.sh [repo]`
 - `./scripts/publish-ready-int.sh [repo]`
+- `./scripts/publish-ready-yesno.sh [repo]`
 - `./scripts/publish-brief.sh [repo]`
 - `./scripts/publish-ready-message.sh [repo]`
 - `./scripts/publish-ready-exit.sh [repo]`
