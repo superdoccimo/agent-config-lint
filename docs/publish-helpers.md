@@ -16,6 +16,7 @@ For a quick list from terminal:
 - `./scripts/publish-blockers-count.sh [repo]`
 - `./scripts/publish-blockers-lines.sh [repo]`
 - `./scripts/publish-blockers-json.sh [repo]`
+- `./scripts/publish-blockers-shell.sh [repo]`
 - `./scripts/publish-ready-mark.sh [repo]`
 - `./scripts/publish-ready-bool.sh [repo]`
 - `./scripts/publish-brief.sh [repo]`
