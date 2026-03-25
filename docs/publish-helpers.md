@@ -19,6 +19,7 @@ For a quick list from terminal:
 - `./scripts/publish-blockers-shell.sh [repo]`
 - `./scripts/publish-ready-mark.sh [repo]`
 - `./scripts/publish-ready-bool.sh [repo]`
+- `./scripts/publish-ready-upper.sh [repo]`
 - `./scripts/publish-brief.sh [repo]`
 - `./scripts/publish-ready-message.sh [repo]`
 - `./scripts/publish-ready-exit.sh [repo]`
